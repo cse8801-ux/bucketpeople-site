@@ -67,7 +67,7 @@ section { padding: 72px 0; }
 .eyebrow { color: var(--coral); font-weight: 800; font-size: 14px; letter-spacing: 0.04em; margin: 0 0 12px; }
 h1, h2, h3 { letter-spacing: -0.03em; line-height: 1.25; }
 h2.sec-title { font-size: 32px; margin: 0 0 14px; font-weight: 800; }
-.sec-lead { color: var(--ink-soft); font-size: 17px; max-width: 640px; margin: 0 0 40px; }
+.sec-lead { color: var(--ink-soft); font-size: 17px; max-width: 640px; margin: 0 0 40px; word-break: keep-all; }
 .center { text-align: center; }
 .center .sec-lead { margin-left: auto; margin-right: auto; }
 
@@ -91,7 +91,7 @@ h2.sec-title { font-size: 32px; margin: 0 0 14px; font-weight: 800; }
 .value-card .ic { width: 46px; height: 46px; border-radius: 12px; background: var(--coral-soft); color: var(--coral-dark);
   display: grid; place-items: center; font-size: 22px; margin-bottom: 16px; }
 .value-card h3 { font-size: 19px; margin: 0 0 8px; }
-.value-card p { margin: 0; color: var(--ink-soft); font-size: 15px; }
+.value-card p { margin: 0; color: var(--ink-soft); font-size: 15px; word-break: keep-all; }
 
 /* 가입 여정 스텝 */
 .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; counter-reset: step; }
