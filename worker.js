@@ -5,7 +5,11 @@ export default {
     const url = new URL(request.url);
     if (url.pathname === '/auth') return authRedirect(request, env);
     if (url.pathname === '/callback') return authCallback(request, env);
-    return env.ASSETS.fetch(request);
+    // 정적 페이지에 검색 색인 금지 헤더를 붙여 응답 (조용한 운영)
+    const res = await env.ASSETS.fetch(request);
+    const out = new Response(res.body, res);
+    out.headers.set('X-Robots-Tag', 'noindex, nofollow');
+    return out;
   },
 };
 
