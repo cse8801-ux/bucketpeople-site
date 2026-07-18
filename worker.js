@@ -5,11 +5,8 @@ export default {
     const url = new URL(request.url);
     if (url.pathname === '/auth') return authRedirect(request, env);
     if (url.pathname === '/callback') return authCallback(request, env);
-    // 정적 페이지에 검색 색인 금지 헤더를 붙여 응답 (조용한 운영)
-    const res = await env.ASSETS.fetch(request);
-    const out = new Response(res.body, res);
-    out.headers.set('X-Robots-Tag', 'noindex, nofollow');
-    return out;
+    // 정적 페이지는 ASSETS가 서빙 (색인 금지 헤더는 _headers 파일에서 처리)
+    return env.ASSETS.fetch(request);
   },
 };
 
