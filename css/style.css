@@ -99,7 +99,7 @@ h2.sec-title { font-size: 32px; margin: 0 0 14px; font-weight: 800; }
 .step .num { counter-increment: step; font-weight: 800; color: var(--coral); font-size: 15px; }
 .step .num::before { content: "STEP " counter(step); }
 .step h3 { font-size: 18px; margin: 8px 0; }
-.step p { margin: 0; color: var(--ink-soft); font-size: 15px; }
+.step p { margin: 0; color: var(--ink-soft); font-size: 15px; word-break: keep-all; }
 
 /* 멤버 카드 */
 .member-card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px;
