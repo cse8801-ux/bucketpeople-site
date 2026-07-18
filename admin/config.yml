@@ -4,7 +4,7 @@ backend:
   name: github
   repo: cse8801-ux/bucketpeople-site
   branch: main
-  base_url: https://bucketpeople-site.pages.dev  # ← 배포 후 실제 pages.dev 주소로 교체
+  base_url: https://bucketpeople-site.cse8801.workers.dev  # Cloudflare Workers 배포 주소 (도메인 연결 시 교체)
   auth_endpoint: auth
 
 # 프로필 사진 업로드 위치
