@@ -1,0 +1,26 @@
+# Netlify 배포 설정 — 버킷피플 정적 사이트
+# 배포 시 build.mjs가 실행되어 멤버 목록(profiles/index.json, all.json)과 sitemap.xml을 자동 갱신합니다.
+
+[build]
+  publish = "."
+  command = "node build.mjs"
+
+[functions]
+  directory = "netlify/functions"
+
+# 깔끔한 주소로 접속되게 (members.html → /members)
+[[redirects]]
+  from = "/members"
+  to = "/members.html"
+  status = 200
+
+[[redirects]]
+  from = "/profile"
+  to = "/profile.html"
+  status = 200
+
+# 관리자가 새 프로필을 올리면 목록이 항상 최신으로 전달되도록
+[[headers]]
+  for = "/profiles/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"

@@ -1,0 +1,14 @@
+# OS 생성 파일
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 에디터
+.vscode/
+.idea/
+
+# 로그
+*.log
+
+# 백업 원본(아임웹에서 긁어온 HTML) — 배포에는 불필요
+profiles-backup/

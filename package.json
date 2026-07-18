@@ -1,0 +1,9 @@
+{
+  "name": "bucketpeople-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "버킷피플 홈페이지 — 정적 사이트 + 멤버 프로필 CMS",
+  "scripts": {
+    "build": "node build.mjs"
+  }
+}

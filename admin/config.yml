@@ -1,0 +1,62 @@
+# 버킷피플 관리자(Decap CMS) 설정
+# 배포 후 아래 repo / base_url 값을 실제 GitHub 저장소와 Netlify 주소로 바꿔주세요.
+backend:
+  name: github
+  repo: cse8801-ux/bucketpeople-site      # ← 배포 시 실제 저장소로 교체
+  branch: main
+  base_url: https://bucketpeople.netlify.app  # ← 배포 시 실제 Netlify 주소로 교체
+  auth_endpoint: .netlify/functions/auth
+
+# 프로필 사진 업로드 위치
+media_folder: "img/profiles"
+public_folder: "/img/profiles"
+
+locale: "ko"
+
+collections:
+  - name: "profiles"
+    label: "멤버 프로필"
+    label_singular: "프로필"
+    description: "새 멤버를 추가하면 홈페이지 멤버 목록과 프로필 페이지에 자동으로 올라갑니다. 아임웹 게시판과 동일한 7항목 양식이에요."
+    folder: "profiles"
+    create: true
+    identifier_field: "name"
+    slug: "no{{fields.no}}-{{year}}{{month}}{{day}}{{hour}}{{minute}}{{second}}"
+    extension: "md"
+    format: "yaml-frontmatter"
+    summary: "No.{{fields.no}}  ·  {{name}}"
+    sortable_fields: ["no", "date", "name"]
+    fields:
+      - { label: "프로필 번호", name: "no", widget: "number", value_type: "int", hint: "예: 73 (다음 순번)" }
+      - { label: "이름 / 닉네임", name: "name", widget: "string", hint: "예: 꿍이" }
+      - { label: "하는 일", name: "job", widget: "string", hint: "예: 우리나라의 재활용을 책임지는 일을 하고 있습니다." }
+      - { label: "발행일", name: "date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD" }
+      - { label: "과거 이야기", name: "past", widget: "text", hint: "어떻게 살아왔는지" }
+      - { label: "현재 이야기", name: "present", widget: "text", hint: "요즘 어떻게 지내는지" }
+      - { label: "미래 이야기", name: "future", widget: "text", hint: "앞으로 어떻게 살고 싶은지" }
+      - { label: "버킷피플에서 기대하는 것", name: "expect", widget: "text" }
+      - { label: "버킷피플들에게 한 마디", name: "oneWord", widget: "string" }
+      - { label: "해시태그", name: "tags", widget: "list", allow_add: true, hint: "예: 워킹맘, 고양이집사, 활동적 (하나씩 추가)" }
+      - { label: "프로필 사진", name: "photo", widget: "image", required: false, hint: "선택. 없으면 이름 첫 글자 아바타가 나옵니다." }
+
+  - name: "bucketlist"
+    label: "버킷리스트 모임"
+    label_singular: "모임"
+    description: "새 모임을 개설하면 홈페이지 '버킷피플의 버킷리스트' 섹션에 자동으로 올라갑니다."
+    folder: "bucketlist"
+    create: true
+    identifier_field: "time"
+    slug: "bl-{{year}}{{month}}{{day}}{{hour}}{{minute}}{{second}}"
+    extension: "md"
+    format: "yaml-frontmatter"
+    media_folder: "/img/bucketlist"
+    public_folder: "/img/bucketlist"
+    summary: "{{time}}  ·  {{fee}}"
+    sortable_fields: ["order", "time"]
+    fields:
+      - { label: "노출 순서", name: "order", widget: "number", value_type: "int", default: 1, hint: "숫자가 작을수록 앞에 나옵니다. (예: 1)" }
+      - { label: "모임 이름", name: "title", widget: "string", required: false, hint: "선택. 비우면 이미지만 보입니다." }
+      - { label: "모임 이미지", name: "image", widget: "image", hint: "모임을 소개하는 정사각형 이미지" }
+      - { label: "시간", name: "time", widget: "string", hint: "예: 19:30~ 또는 18:00~20:00" }
+      - { label: "참가비", name: "fee", widget: "string", hint: "예: 10,000원 / 없음 / 게임 비용 외 없음" }
+      - { label: "예약 링크", name: "link", widget: "string", hint: "네이버 예약 주소나 신청 링크" }

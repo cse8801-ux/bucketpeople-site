@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>멤버 · 버킷피플</title>
+<meta name="description" content="버킷피플 멤버들을 이름·직업·관심사로 검색해 자유롭게 둘러보세요. 투명성을 기반으로 한 안전한 커뮤니티, 버킷피플." />
+<meta property="og:title" content="멤버 · 버킷피플" />
+<meta property="og:description" content="버킷피플 멤버들을 이름·직업·관심사로 검색해 자유롭게 둘러보세요." />
+<meta property="og:type" content="website" />
+<link rel="preconnect" href="https://cdn.jsdelivr.net" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+<link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="brand" href="/"><span class="dot">B</span> 버킷피플</a>
+    <button class="nav-toggle" aria-label="메뉴 열기" onclick="document.getElementById('nav').classList.toggle('open')">☰</button>
+    <nav class="nav-links" id="nav">
+      <a href="/#about">소개</a>
+      <a href="/#join">가입 안내</a>
+      <a href="/members">멤버</a>
+      <a href="/#bucketlist">버킷리스트</a>
+      <a class="nav-cta" href="/#join">폰타임 신청</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section style="padding-bottom:40px;">
+  <div class="wrap">
+    <p class="eyebrow">MEMBERS</p>
+    <h2 class="sec-title">버킷피플 멤버</h2>
+    <p class="sec-lead">궁금한 멤버를 언제든 검색해서 볼 수 있어요. 이름·직업·관심사는 물론, 이야기 속 내용까지 한 번에 찾아집니다.</p>
+
+    <div class="search-bar">
+      <span aria-hidden="true" style="color:#B6A99F;font-size:18px;">⌕</span>
+      <input id="q" type="text" placeholder="이름·직업·관심사·이야기로 검색 (예: 고양이, 개발, 여행)" autocomplete="off" />
+      <span class="cnt" id="count">—</span>
+    </div>
+    <div class="chips" id="chips"></div>
+  </div>
+</section>
+
+<section style="padding-top:0;">
+  <div class="wrap">
+    <div class="grid cols-3" id="grid"></div>
+    <div class="empty" id="empty" style="display:none;">검색 결과가 없어요. 다른 키워드로 찾아보세요.</div>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <div class="brand"><span class="dot">B</span> 버킷피플</div>
+        <p style="margin:10px 0 0;max-width:320px;color:#A28C7F;">좋은 사람들과 함께라면 뭘 해도 좋다. 자피치의 보물상자, 버킷피플.</p>
+      </div>
+      <div class="footer-links">
+        <a href="/#about">소개</a><a href="/#join">가입 안내</a><a href="/members">멤버</a><a href="/#bucketlist">버킷리스트</a>
+      </div>
+    </div>
+    <div class="biz-info">
+      <span>상호명: 컴퍼니B</span><span>대표자: 최승은</span><span>사업자등록번호: 824-52-00142</span><br />
+      <span>사업장주소: 서울 강남구 강남대로84길 33 (역삼동, 대우디오빌플러스) 504호</span><br />
+      <span>연락처: 010-7626-8801</span><span>이메일: spillow@naver.com</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+var AVATAR_COLORS = ["#D85A30","#1D9E75","#534AB7","#BA7517","#D4537E","#185FA5","#639922","#993C1D"];
+function colorFor(s){ var h=0; for(var i=0;i<s.length;i++) h=(h*31+s.charCodeAt(i))>>>0; return AVATAR_COLORS[h%AVATAR_COLORS.length]; }
+function esc(s){ return (s||'').replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+
+var DATA = [], activeTag = '';
+var grid=document.getElementById('grid'), q=document.getElementById('q'),
+    count=document.getElementById('count'), empty=document.getElementById('empty'), chipsEl=document.getElementById('chips');
+
+function card(m){
+  var initial = (m.name||'?').trim().charAt(0);
+  var av = m.photo ? '<span class="avatar"><img src="'+esc(m.photo)+'" alt="'+esc(m.name)+'"></span>'
+                   : '<span class="avatar" style="background:'+colorFor(m.name||'x')+'">'+esc(initial)+'</span>';
+  var tags = (m.tags||[]).slice(0,3).map(function(t){return '<span class="tag">#'+esc(t)+'</span>';}).join('');
+  return '<a class="member-card" href="/profile?id='+encodeURIComponent(m.slug)+'">'
+    + '<div class="member-top">'+av+'<div><div class="member-name">'+esc(m.name)+'</div>'
+    + '<div class="member-meta">No.'+m.no+(m.job?' · '+esc(m.job.slice(0,18)):'')+'</div></div></div>'
+    + '<p class="member-desc">'+esc(m.preview||m.oneWord||'')+'</p>'
+    + '<div class="tags">'+tags+'</div></a>';
+}
+
+function haystack(m){ return (m.name+' '+m.job+' '+(m.preview||'')+' '+(m.oneWord||'')+' '+(m.tags||[]).join(' ')+' '+(m._deep||'')).toLowerCase(); }
+
+function render(){
+  var term=(q.value||'').trim().toLowerCase();
+  var out=DATA.filter(function(m){
+    if(activeTag && (m.tags||[]).indexOf(activeTag)<0) return false;
+    if(!term) return true;
+    return haystack(m).indexOf(term)>-1;
+  });
+  grid.innerHTML=out.map(card).join('');
+  count.textContent=out.length+'명';
+  empty.style.display=out.length?'none':'block';
+}
+
+function buildChips(){
+  var freq={};
+  DATA.forEach(function(m){(m.tags||[]).forEach(function(t){freq[t]=(freq[t]||0)+1;});});
+  var top=Object.keys(freq).sort(function(a,b){return freq[b]-freq[a];}).slice(0,10);
+  chipsEl.innerHTML='<button class="chip active" data-t="">전체</button>'+
+    top.map(function(t){return '<button class="chip" data-t="'+esc(t)+'">#'+esc(t)+'</button>';}).join('');
+  Array.prototype.forEach.call(chipsEl.querySelectorAll('.chip'),function(b){
+    b.addEventListener('click',function(){
+      activeTag=b.getAttribute('data-t');
+      Array.prototype.forEach.call(chipsEl.querySelectorAll('.chip'),function(x){x.classList.remove('active');});
+      b.classList.add('active'); render();
+    });
+  });
+}
+
+q.addEventListener('input', render);
+
+fetch('/profiles/index.json').then(function(r){return r.json();}).then(function(list){
+  DATA=list; buildChips(); render();
+  // 본문(이야기)까지 검색되도록 전체 데이터 뒤에서 병합
+  fetch('/profiles/all.json').then(function(r){return r.json();}).then(function(full){
+    var map={}; full.forEach(function(f){map[f.slug]=[f.past,f.present,f.future,f.expect].join(' ');});
+    DATA.forEach(function(m){m._deep=map[m.slug]||'';});
+  }).catch(function(){});
+}).catch(function(){ grid.innerHTML='<p class="empty">멤버 목록을 불러오지 못했어요.</p>'; });
+</script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>프로필 · 버킷피플</title>
+<meta name="description" content="버킷피플 멤버 프로필" />
+<link rel="preconnect" href="https://cdn.jsdelivr.net" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+<link rel="stylesheet" href="/css/style.css" />
+<style>
+.p-hero { background: linear-gradient(180deg, var(--coral-soft), var(--bg)); padding: 44px 0 34px; }
+.p-hero-in { display: flex; align-items: center; gap: 20px; }
+.p-avatar { width: 84px; height: 84px; border-radius: 50%; display: grid; place-items: center;
+  font-weight: 800; font-size: 32px; color: #fff; flex: none; overflow: hidden; }
+.p-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.p-name { font-size: 30px; font-weight: 800; margin: 0; }
+.p-job { color: var(--coral-dark); font-weight: 600; margin: 6px 0 0; }
+.p-no { color: var(--ink-soft); font-size: 14px; }
+.story { margin: 0 0 26px; }
+.story .lbl { display: inline-flex; align-items: center; gap: 8px; color: var(--coral); font-weight: 800; font-size: 14px; margin-bottom: 8px; }
+.story .lbl::before { content:""; width: 8px; height: 8px; border-radius: 50%; background: var(--coral); }
+.story p { margin: 0; font-size: 16px; line-height: 1.85; white-space: pre-wrap; }
+.qa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 8px 0 26px; }
+.qa { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 20px; }
+.qa .lbl { color: var(--ink-soft); font-weight: 700; font-size: 13px; margin-bottom: 6px; }
+.qa p { margin: 0; font-size: 15px; }
+.oneword { background: var(--coral-soft); border-radius: var(--radius); padding: 22px 24px; font-size: 18px;
+  font-weight: 600; color: var(--coral-dark); margin: 0 0 26px; }
+.back-row { display: flex; justify-content: space-between; align-items: center; margin-top: 12px; }
+@media (max-width: 640px){ .qa-grid { grid-template-columns: 1fr; } .p-name { font-size: 24px; } .p-avatar{width:64px;height:64px;font-size:24px;} }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="brand" href="/"><span class="dot">B</span> 버킷피플</a>
+    <button class="nav-toggle" aria-label="메뉴 열기" onclick="document.getElementById('nav').classList.toggle('open')">☰</button>
+    <nav class="nav-links" id="nav">
+      <a href="/#about">소개</a>
+      <a href="/#join">가입 안내</a>
+      <a href="/members">멤버</a>
+      <a href="/#bucketlist">버킷리스트</a>
+      <a class="nav-cta" href="/#join">폰타임 신청</a>
+    </nav>
+  </div>
+</header>
+
+<main id="app">
+  <section class="p-hero" style="padding-bottom:34px;">
+    <div class="wrap"><div class="p-hero-in" id="phero"><p>불러오는 중…</p></div></div>
+  </section>
+  <section style="padding-top:34px;">
+    <div class="wrap" style="max-width:760px;" id="pbody"></div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="biz-info" style="border:0;padding:0;">
+      <span>상호명: 컴퍼니B</span><span>대표자: 최승은</span><span>연락처: 010-7626-8801</span>
+      <span>이메일: spillow@naver.com</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+var AVATAR_COLORS = ["#D85A30","#1D9E75","#534AB7","#BA7517","#D4537E","#185FA5","#639922","#993C1D"];
+function colorFor(s){ var h=0; for(var i=0;i<s.length;i++) h=(h*31+s.charCodeAt(i))>>>0; return AVATAR_COLORS[h%AVATAR_COLORS.length]; }
+function esc(s){ return (s||'').replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+function param(k){ return new URLSearchParams(location.search).get(k); }
+
+function story(lbl, txt){ if(!txt) return ''; return '<div class="story"><div class="lbl">'+lbl+'</div><p>'+esc(txt)+'</p></div>'; }
+
+function render(m){
+  document.title = m.name + ' · 버킷피플';
+  var initial=(m.name||'?').trim().charAt(0);
+  var av = m.photo ? '<span class="p-avatar"><img src="'+esc(m.photo)+'" alt="'+esc(m.name)+'"></span>'
+                   : '<span class="p-avatar" style="background:'+colorFor(m.name||'x')+'">'+esc(initial)+'</span>';
+  document.getElementById('phero').innerHTML = av +
+    '<div><div class="p-no">프로필 No.'+m.no+'</div><h1 class="p-name">'+esc(m.name)+'</h1>'+
+    (m.job?'<p class="p-job">'+esc(m.job)+'</p>':'')+'</div>';
+
+  var tags=(m.tags||[]).map(function(t){return '<span class="tag coral">#'+esc(t)+'</span>';}).join('');
+  var html = '';
+  html += story('과거 이야기', m.past);
+  html += story('현재 이야기', m.present);
+  html += story('미래 이야기', m.future);
+  if(m.expect || m.oneWord){
+    html += '<div class="qa-grid">';
+    if(m.expect) html += '<div class="qa"><div class="lbl">버킷피플에서 기대하는 것</div><p>'+esc(m.expect)+'</p></div>';
+    if(m.oneWord) html += '<div class="qa"><div class="lbl">버킷피플들에게 한 마디</div><p>“'+esc(m.oneWord)+'”</p></div>';
+    html += '</div>';
+  }
+  if(tags) html += '<div class="tags" style="margin-bottom:26px;">'+tags+'</div>';
+  html += '<div class="back-row"><a class="btn btn-ghost" href="/members">← 멤버 목록으로</a>'+
+          '<a class="btn btn-primary" href="/#join">나도 버킷피플 되기</a></div>';
+  document.getElementById('pbody').innerHTML = html;
+}
+
+var id = param('id');
+fetch('/profiles/all.json').then(function(r){return r.json();}).then(function(full){
+  var m = full.filter(function(x){return x.slug===id;})[0];
+  if(!m){ document.getElementById('phero').innerHTML='<p>프로필을 찾을 수 없어요. <a href="/members" style="color:var(--coral)">멤버 목록으로</a></p>'; return; }
+  render(m);
+}).catch(function(){ document.getElementById('phero').innerHTML='<p>불러오지 못했어요.</p>'; });
+</script>
+</body>
+</html>
