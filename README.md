@@ -42,12 +42,17 @@ node server.mjs     # http://localhost:4321
 
 1~2분 뒤 자동 반영됩니다.
 
-## 배포 시 할 일 (자피치와 동일)
+## 배포 — Cloudflare Pages
 
-1. GitHub 저장소 생성 → push (예: `cse8801-ux/bucketpeople-site`)
-2. Netlify 연결 (build: `node build.mjs`, publish: `.`)
-3. `admin/config.yml`의 `repo`·`base_url`을 실제 값으로 교체
-4. GitHub OAuth 앱 생성 → Netlify 환경변수 `OAUTH_CLIENT_ID`, `OAUTH_CLIENT_SECRET` 등록
+Netlify 무료 크레딧 소진 이슈로 Cloudflare Pages에 배포한다. (관리자 OAuth는 `functions/auth.js`, `functions/callback.js` = Cloudflare Pages Functions. `netlify/` 폴더는 미사용이나 보존.)
+
+1. GitHub 저장소 push (완료: `cse8801-ux/bucketpeople-site`)
+2. Cloudflare Pages → Create → Connect to Git → 저장소 선택
+   - Framework preset: None
+   - Build command: `node build.mjs`
+   - Build output directory: `/`
+3. 배포 후 나온 `*.pages.dev` 주소를 `admin/config.yml`의 `base_url`에 반영 → 커밋
+4. GitHub OAuth 앱 생성 (Authorization callback URL = `https://<주소>/callback`) → Cloudflare Pages 환경변수 `OAUTH_CLIENT_ID`, `OAUTH_CLIENT_SECRET` 등록
 5. 도메인 연결 (예: bucketpeople.kr) → `build.mjs`·`robots.txt`의 `SITE` 값 교체
 6. 아임웹 사이트는 새 사이트 색인 확인 후 정리
 

@@ -1,11 +1,11 @@
-# 버킷피플 관리자(Decap CMS) 설정
-# 배포 후 아래 repo / base_url 값을 실제 GitHub 저장소와 Netlify 주소로 바꿔주세요.
+# 버킷피플 관리자(Decap CMS) 설정 — Cloudflare Pages 배포용
+# 배포 후 base_url을 실제 pages.dev 주소(또는 연결한 도메인)로 바꿔주세요.
 backend:
   name: github
-  repo: cse8801-ux/bucketpeople-site      # ← 배포 시 실제 저장소로 교체
+  repo: cse8801-ux/bucketpeople-site
   branch: main
-  base_url: https://bucketpeople.netlify.app  # ← 배포 시 실제 Netlify 주소로 교체
-  auth_endpoint: .netlify/functions/auth
+  base_url: https://bucketpeople-site.pages.dev  # ← 배포 후 실제 pages.dev 주소로 교체
+  auth_endpoint: auth
 
 # 프로필 사진 업로드 위치
 media_folder: "img/profiles"
