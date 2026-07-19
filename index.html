@@ -128,7 +128,7 @@
     <div class="wrap center">
       <p class="eyebrow">UPCOMING</p>
       <h2 class="sec-title">다가오는 버킷리스트</h2>
-      <p class="sec-lead">가장 최근에 열리는 모임들이에요. 관심 있는 모임에 자유롭게 참여해보세요.</p>
+      <p class="sec-lead">곧 열리는 모임들이에요. 관심 있는 모임에 자유롭게 참여해보세요.</p>
     </div>
     <div class="wrap">
       <div class="bl-grid" id="bl-grid"></div>
@@ -207,10 +207,10 @@ fetch('/profiles/index.json').then(function(r){return r.json();}).then(function(
   }).join('');
 }).catch(function(){});
 
-// 다가오는 버킷리스트 — 등록일 최신순 6개 (새 모임 올리면 자동 갱신)
+// 다가오는 버킷리스트 — 진행일자 가까운 순 6개 (새 모임 올리면 자동 갱신)
 fetch('/data/bucketlist.json').then(function(r){return r.json();}).then(function(all){
   var list=all.slice().sort(function(a,b){
-    return String(b.date||'').localeCompare(String(a.date||'')) || ((a.order||999)-(b.order||999));
+    return String(a.date||'').localeCompare(String(b.date||'')) || ((a.order||999)-(b.order||999));
   }).slice(0,6);
   document.getElementById('bl-grid').innerHTML=list.map(function(b){
     return '<a class="bl-card" href="'+esc(b.href)+'" target="_blank" rel="noopener">'

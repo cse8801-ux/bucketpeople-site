@@ -65,8 +65,11 @@
 
 <script>
 function esc(s){ return (s||'').replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
-fetch('/data/bucketlist.json').then(function(r){return r.json();}).then(function(list){
-  // 전체 페이지는 노출 순서(order)대로 (build.mjs가 이미 정렬해 둠)
+fetch('/data/bucketlist.json').then(function(r){return r.json();}).then(function(all){
+  // 진행일자 가까운 순으로 정렬 (같은 날짜는 order로)
+  var list=all.slice().sort(function(a,b){
+    return String(a.date||'').localeCompare(String(b.date||'')) || ((a.order||999)-(b.order||999));
+  });
   var grid=document.getElementById('bl-grid');
   if(!list.length){ document.getElementById('empty').style.display='block'; return; }
   grid.innerHTML=list.map(function(b){

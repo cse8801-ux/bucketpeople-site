@@ -99,8 +99,8 @@ if (existsSync('bucketlist')) {
       href: d.link || '',
     };
   });
-  // 전체 페이지용: 노출 순서(order) 오름차순 (기존 배열 순서 유지)
-  bl.sort((a, b) => a.order - b.order);
+  // 진행일자(date) 오름차순 — 전체 페이지·홈 '다가오는' 모두 이 순서 (같은 날짜는 order로)
+  bl.sort((a, b) => String(a.date || '').localeCompare(String(b.date || '')) || (a.order - b.order));
   if (!existsSync('data')) mkdirSync('data');
   // date와 order를 함께 담아 홈(최신순 6개)·전체 페이지(order순) 모두 이 파일로 처리
   writeFileSync('data/bucketlist.json', JSON.stringify(bl, null, 2) + '\n', 'utf8');
