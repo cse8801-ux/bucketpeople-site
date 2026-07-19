@@ -103,7 +103,8 @@
         </div>
       </div>
       <div class="center" style="margin-top:34px;">
-        <a class="btn btn-primary" href="https://youtube.com/@spillow0110" target="_blank" rel="noopener">폰타임 신청 문의하기</a>
+        <button type="button" class="btn btn-primary" onclick="kakaoContact()">폰타임 신청 문의하기</button>
+        <p style="margin:14px 0 0;color:var(--ink-soft);font-size:14px;">카카오톡 ID <b style="color:var(--coral-dark);">spillow</b> 로 편하게 문의해주세요</p>
       </div>
     </div>
   </section>
@@ -140,10 +141,12 @@
       <div class="cta-band">
         <h2>나도 버킷피플이 되고 싶다면</h2>
         <p>좋은 사람들과 함께라면 뭘 해도 좋으니까. 지금 폰타임을 신청해보세요.</p>
-        <a class="btn btn-primary" href="https://youtube.com/@spillow0110" target="_blank" rel="noopener">폰타임 신청하기</a>
+        <button type="button" class="btn btn-primary" onclick="kakaoContact()">폰타임 신청하기</button>
       </div>
     </div>
   </section>
+
+  <div id="kakao-toast" role="status" aria-live="polite"></div>
 </main>
 
 <footer class="site-footer">
@@ -172,6 +175,18 @@
 var AVATAR_COLORS = ["#D85A30","#1D9E75","#534AB7","#BA7517","#D4537E","#185FA5","#639922","#993C1D"];
 function colorFor(s){ var h=0; for(var i=0;i<s.length;i++) h=(h*31+s.charCodeAt(i))>>>0; return AVATAR_COLORS[h%AVATAR_COLORS.length]; }
 function esc(s){ return (s||'').replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+
+// 카카오톡 문의 — ID 복사 + 안내 토스트
+function kakaoContact(){
+  var id='spillow';
+  var t=document.getElementById('kakao-toast');
+  function show(msg){ t.innerHTML=msg; t.classList.add('show'); clearTimeout(t._h); t._h=setTimeout(function(){t.classList.remove('show');},3800); }
+  var done="카카오톡 ID <b>"+id+"</b> 복사됨! 카카오톡에서 검색해 문의해주세요 💬";
+  var manual="카카오톡에서 ID <b>"+id+"</b> 를 검색해 문의해주세요 💬";
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(id).then(function(){show(done);}).catch(function(){show(manual);});
+  } else { show(manual); }
+}
 
 // 멤버 미리보기 (최신 6명)
 fetch('/profiles/index.json').then(function(r){return r.json();}).then(function(list){
