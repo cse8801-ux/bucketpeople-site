@@ -51,10 +51,11 @@ collections:
     format: "yaml-frontmatter"
     media_folder: "/img/bucketlist"
     public_folder: "/img/bucketlist"
-    summary: "{{time}}  ·  {{fee}}"
-    sortable_fields: ["order", "time"]
+    summary: "{{date}}  ·  {{time}}  ·  {{fee}}"
+    sortable_fields: ["date", "order", "time"]
     fields:
-      - { label: "노출 순서", name: "order", widget: "number", value_type: "int", default: 1, hint: "숫자가 작을수록 앞에 나옵니다. (예: 1)" }
+      - { label: "등록일", name: "date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD", hint: "홈 '다가오는 버킷리스트'는 이 날짜 최신순으로 6개가 자동으로 보입니다. (보통 오늘 날짜 그대로 두면 됨)" }
+      - { label: "노출 순서(전체 페이지)", name: "order", widget: "number", value_type: "int", default: 1, hint: "전체 버킷리스트 페이지에서의 정렬 순서. 숫자가 작을수록 앞. (예: 1)" }
       - { label: "모임 이름", name: "title", widget: "string", required: false, hint: "선택. 비우면 이미지만 보입니다." }
       - { label: "모임 이미지", name: "image", widget: "image", hint: "모임을 소개하는 정사각형 이미지" }
       - { label: "시간", name: "time", widget: "string", hint: "예: 19:30~ 또는 18:00~20:00" }

@@ -24,7 +24,7 @@
       <a href="#about">소개</a>
       <a href="#join">가입 안내</a>
       <a href="/members">멤버</a>
-      <a href="#bucketlist">버킷리스트</a>
+      <a href="/bucketlist">버킷리스트</a>
       <a class="nav-cta" href="#join">폰타임 신청</a>
     </nav>
   </div>
@@ -123,15 +123,18 @@
     </div>
   </section>
 
-  <!-- 버킷리스트 -->
+  <!-- 다가오는 버킷리스트 (최신 6개) -->
   <section id="bucketlist" style="background:#fff;">
     <div class="wrap center">
-      <p class="eyebrow">BUCKET LIST</p>
-      <h2 class="sec-title">버킷피플의 버킷리스트</h2>
-      <p class="sec-lead">멤버들이 함께 이뤄가는 모임들. 관심 있는 모임에 자유롭게 참여해보세요.</p>
+      <p class="eyebrow">UPCOMING</p>
+      <h2 class="sec-title">다가오는 버킷리스트</h2>
+      <p class="sec-lead">가장 최근에 열리는 모임들이에요. 관심 있는 모임에 자유롭게 참여해보세요.</p>
     </div>
     <div class="wrap">
       <div class="bl-grid" id="bl-grid"></div>
+      <div class="center" style="margin-top:32px;">
+        <a class="btn btn-ghost" href="/bucketlist">전체 버킷리스트 보기 →</a>
+      </div>
     </div>
   </section>
 
@@ -158,7 +161,7 @@
       </div>
       <div class="footer-links">
         <a href="#about">소개</a><a href="#join">가입 안내</a><a href="/members">멤버</a>
-        <a href="#bucketlist">버킷리스트</a>
+        <a href="/bucketlist">버킷리스트</a>
         <a href="https://youtube.com/@spillow0110" target="_blank" rel="noopener">베개씨 유튜브</a>
       </div>
     </div>
@@ -204,8 +207,11 @@ fetch('/profiles/index.json').then(function(r){return r.json();}).then(function(
   }).join('');
 }).catch(function(){});
 
-// 버킷리스트
-fetch('/data/bucketlist.json').then(function(r){return r.json();}).then(function(list){
+// 다가오는 버킷리스트 — 등록일 최신순 6개 (새 모임 올리면 자동 갱신)
+fetch('/data/bucketlist.json').then(function(r){return r.json();}).then(function(all){
+  var list=all.slice().sort(function(a,b){
+    return String(b.date||'').localeCompare(String(a.date||'')) || ((a.order||999)-(b.order||999));
+  }).slice(0,6);
   document.getElementById('bl-grid').innerHTML=list.map(function(b){
     return '<a class="bl-card" href="'+esc(b.href)+'" target="_blank" rel="noopener">'
       +'<img src="'+esc(b.img)+'" alt="'+esc(b.title||'버킷리스트 모임')+'" loading="lazy" style="border-radius:10px;aspect-ratio:1/1;object-fit:cover;" />'

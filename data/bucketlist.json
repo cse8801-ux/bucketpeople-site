@@ -1,5 +1,8 @@
 [
   {
+    "slug": "bl01",
+    "order": 1,
+    "date": "2026-07-19",
     "title": "",
     "img": "/img/bucketlist/bl01.jpg",
     "time": "19:30~",
@@ -7,6 +10,9 @@
     "href": "https://booking.naver.com/booking/5/bizes/373396/items/6789689/?preview=1&startDateTime=2025-06-27T00%3A00%3A00%2B09%3A00"
   },
   {
+    "slug": "bl02",
+    "order": 2,
+    "date": "2026-07-19",
     "title": "",
     "img": "/img/bucketlist/bl02.jpg",
     "time": "19:30~",
@@ -14,6 +20,9 @@
     "href": "https://booking.naver.com/booking/5/bizes/373396/items/6526143/?preview=1&startDateTime=2025-03-03T00%3A00%3A00%2B09%3A00"
   },
   {
+    "slug": "bl03",
+    "order": 3,
+    "date": "2026-07-19",
     "title": "",
     "img": "/img/bucketlist/bl03.jpg",
     "time": "18:00~",
@@ -21,6 +30,9 @@
     "href": "https://buly.kr/9XMqFd9"
   },
   {
+    "slug": "bl04",
+    "order": 4,
+    "date": "2026-07-19",
     "title": "",
     "img": "/img/bucketlist/bl04.jpg",
     "time": "8:30, 22:00",
@@ -28,6 +40,9 @@
     "href": "https://buly.kr/FsJ2NMO"
   },
   {
+    "slug": "bl05",
+    "order": 5,
+    "date": "2026-07-19",
     "title": "",
     "img": "/img/bucketlist/bl05.jpg",
     "time": "8:30, 22:00",
@@ -35,6 +50,9 @@
     "href": "https://buly.kr/FAeiQkK"
   },
   {
+    "slug": "bl06",
+    "order": 6,
+    "date": "2026-07-19",
     "title": "",
     "img": "/img/bucketlist/bl06.jpg",
     "time": "17:30~19:00",
@@ -42,6 +60,9 @@
     "href": "https://buly.kr/31UHHsH"
   },
   {
+    "slug": "bl07",
+    "order": 7,
+    "date": "2026-07-19",
     "title": "",
     "img": "/img/bucketlist/bl07.jpg",
     "time": "16:30~18:00",
@@ -49,6 +70,9 @@
     "href": "https://buly.kr/CB5iQb4"
   },
   {
+    "slug": "bl08",
+    "order": 8,
+    "date": "2026-07-19",
     "title": "",
     "img": "/img/bucketlist/bl08.jpg",
     "time": "17:30~19:00",
@@ -56,6 +80,9 @@
     "href": "https://booking.naver.com/booking/5/bizes/373396/items/6489579/?preview=1&startDateTime=2025-06-15T00%3A00%3A00%2B09%3A00&tab=book"
   },
   {
+    "slug": "bl09",
+    "order": 9,
+    "date": "2026-07-19",
     "title": "",
     "img": "/img/bucketlist/bl09.jpg",
     "time": "18:00~20:00",
@@ -63,6 +90,9 @@
     "href": "https://buly.kr/7mCYo66"
   },
   {
+    "slug": "bl10",
+    "order": 10,
+    "date": "2026-07-19",
     "title": "",
     "img": "/img/bucketlist/bl10.jpg",
     "time": "18:00~",
@@ -70,6 +100,9 @@
     "href": "https://buly.kr/3NJceNO"
   },
   {
+    "slug": "bl11",
+    "order": 11,
+    "date": "2026-07-19",
     "title": "",
     "img": "/img/bucketlist/bl11.jpg",
     "time": "14:00~18:00",
@@ -77,6 +110,9 @@
     "href": "https://buly.kr/CWv22Ch"
   },
   {
+    "slug": "bl12",
+    "order": 12,
+    "date": "2026-07-19",
     "title": "",
     "img": "/img/bucketlist/bl12.jpg",
     "time": "18:30~20:30",
@@ -84,6 +120,9 @@
     "href": "https://buly.kr/AaqIxEf"
   },
   {
+    "slug": "bl13",
+    "order": 13,
+    "date": "2026-07-19",
     "title": "",
     "img": "/img/bucketlist/bl13.jpg",
     "time": "18:00~21:00",
@@ -91,6 +130,9 @@
     "href": "https://buly.kr/7QMfIX1"
   },
   {
+    "slug": "bl14",
+    "order": 14,
+    "date": "2026-07-19",
     "title": "",
     "img": "/img/bucketlist/bl14.jpg",
     "time": "20:00~",
@@ -98,6 +140,9 @@
     "href": "https://buly.kr/5UIKVK0"
   },
   {
+    "slug": "bl15",
+    "order": 15,
+    "date": "2026-07-19",
     "title": "",
     "img": "/img/bucketlist/bl15.jpg",
     "time": "10:00~12:00",
@@ -105,6 +150,9 @@
     "href": "https://booking.naver.com/booking/5/bizes/373396/items/6870094/?preview=1"
   },
   {
+    "slug": "bl16",
+    "order": 16,
+    "date": "2026-07-19",
     "title": "",
     "img": "/img/bucketlist/bl16.jpg",
     "time": "19:30~22:00",
@@ -112,6 +160,9 @@
     "href": "https://booking.naver.com/booking/5/bizes/373396/items/6870082/?preview=1"
   },
   {
+    "slug": "bl17",
+    "order": 17,
+    "date": "2026-07-19",
     "title": "",
     "img": "/img/bucketlist/bl17.jpg",
     "time": "16:00~18:00",
@@ -119,6 +170,9 @@
     "href": "https://booking.naver.com/booking/5/bizes/373396/items/6489579/?preview=1&startDateTime=2025-06-15T00%3A00%3A00%2B09%3A00&tab=book"
   },
   {
+    "slug": "bl18",
+    "order": 18,
+    "date": "2026-07-19",
     "title": "",
     "img": "/img/bucketlist/bl18.jpg",
     "time": "15:00~18:30",
@@ -126,6 +180,9 @@
     "href": "https://booking.naver.com/booking/5/bizes/373396/items/6778252/?preview=1&startDateTime=2025-06-03T00%3A00%3A00%2B09%3A00"
   },
   {
+    "slug": "bl19",
+    "order": 19,
+    "date": "2026-07-19",
     "title": "",
     "img": "/img/bucketlist/bl19.jpg",
     "time": "19:30~22:00",
@@ -133,6 +190,9 @@
     "href": "https://booking.naver.com/booking/5/bizes/373396/items/6489580/?preview=1&startDateTime=2025-03-19T00%3A00%3A00%2B09%3A00"
   },
   {
+    "slug": "bl20",
+    "order": 20,
+    "date": "2026-07-19",
     "title": "",
     "img": "/img/bucketlist/bl20.jpg",
     "time": "12:00~",
@@ -140,6 +200,9 @@
     "href": "https://booking.naver.com/booking/5/bizes/373396/items/6489577/?preview=1&startDateTime=2025-03-08T00%3A00%3A00%2B09%3A00"
   },
   {
+    "slug": "bl21",
+    "order": 21,
+    "date": "2026-07-19",
     "title": "",
     "img": "/img/bucketlist/bl21.jpg",
     "time": "17:30~19:30",

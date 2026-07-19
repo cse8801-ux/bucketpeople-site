@@ -89,7 +89,9 @@ if (existsSync('bucketlist')) {
   const bl = files.map((file) => {
     const d = parseFrontmatter(readFileSync(join('bucketlist', file), 'utf8'));
     return {
+      slug: file.replace(/\.md$/, ''),
       order: d.order ? Number(d.order) : 999,
+      date: d.date ? String(d.date).slice(0, 10) : '',
       title: d.title || '',
       img: d.image || '',
       time: d.time || '',
@@ -97,10 +99,11 @@ if (existsSync('bucketlist')) {
       href: d.link || '',
     };
   });
-  // 노출 순서 오름차순
+  // 전체 페이지용: 노출 순서(order) 오름차순 (기존 배열 순서 유지)
   bl.sort((a, b) => a.order - b.order);
   if (!existsSync('data')) mkdirSync('data');
-  writeFileSync('data/bucketlist.json', JSON.stringify(bl.map(({ order, ...rest }) => rest), null, 2) + '\n', 'utf8');
+  // date와 order를 함께 담아 홈(최신순 6개)·전체 페이지(order순) 모두 이 파일로 처리
+  writeFileSync('data/bucketlist.json', JSON.stringify(bl, null, 2) + '\n', 'utf8');
   console.log(`✅ data/bucketlist.json 생성 — ${bl.length}개 모임`);
 }
 
@@ -109,6 +112,7 @@ const today = new Date().toISOString().slice(0, 10);
 const urls = [
   { loc: `${SITE}/`, priority: '1.0' },
   { loc: `${SITE}/members`, priority: '0.9' },
+  { loc: `${SITE}/bucketlist`, priority: '0.7' },
 ];
 for (const it of items) {
   urls.push({ loc: `${SITE}/profile?id=${it.slug}`, priority: '0.6', lastmod: it.date });

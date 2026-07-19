@@ -18,6 +18,7 @@ const server = createServer(async (req, res) => {
   if (path === '/') path = '/index.html';
   if (path === '/members') path = '/members.html';
   if (path === '/profile') path = '/profile.html';
+  if (path === '/bucketlist') path = '/bucketlist.html';
   if (path === '/admin' || path === '/admin/') path = '/admin/index.html';
   let file = join(ROOT, path);
   try {

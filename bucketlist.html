@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>버킷리스트 · 버킷피플</title>
+<meta name="description" content="버킷피플 멤버들이 함께 이뤄가는 모든 모임. 관심 있는 버킷리스트에 자유롭게 참여해보세요." />
+<meta property="og:title" content="버킷리스트 · 버킷피플" />
+<meta property="og:description" content="버킷피플 멤버들이 함께 이뤄가는 모든 모임." />
+<meta property="og:type" content="website" />
+<link rel="preconnect" href="https://cdn.jsdelivr.net" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+<link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="brand" href="/"><span class="dot">B</span> 버킷피플</a>
+    <button class="nav-toggle" aria-label="메뉴 열기" onclick="document.getElementById('nav').classList.toggle('open')">☰</button>
+    <nav class="nav-links" id="nav">
+      <a href="/#about">소개</a>
+      <a href="/#join">가입 안내</a>
+      <a href="/members">멤버</a>
+      <a href="/bucketlist">버킷리스트</a>
+      <a class="nav-cta" href="/#join">폰타임 신청</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section style="padding-bottom:40px;">
+  <div class="wrap center">
+    <p class="eyebrow">BUCKET LIST</p>
+    <h2 class="sec-title">버킷피플의 버킷리스트</h2>
+    <p class="sec-lead">멤버들이 함께 이뤄가는 모든 모임이에요. 관심 있는 모임에 자유롭게 참여해보세요.</p>
+  </div>
+</section>
+
+<section style="padding-top:0;">
+  <div class="wrap">
+    <div class="bl-grid" id="bl-grid"></div>
+    <div class="empty" id="empty" style="display:none;">아직 등록된 모임이 없어요.</div>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <div class="brand"><span class="dot">B</span> 버킷피플</div>
+        <p style="margin:10px 0 0;max-width:320px;color:#A28C7F;">좋은 사람들과 함께라면 뭘 해도 좋다. 자피치의 보물상자, 버킷피플.</p>
+      </div>
+      <div class="footer-links">
+        <a href="/#about">소개</a><a href="/#join">가입 안내</a><a href="/members">멤버</a><a href="/bucketlist">버킷리스트</a>
+      </div>
+    </div>
+    <div class="biz-info">
+      <span>상호명: 컴퍼니B</span><span>대표자: 최승은</span><span>사업자등록번호: 824-52-00142</span><br />
+      <span>사업장주소: 서울 강남구 강남대로84길 33 (역삼동, 대우디오빌플러스) 504호</span><br />
+      <span>연락처: 010-7626-8801</span><span>이메일: spillow@naver.com</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+function esc(s){ return (s||'').replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+fetch('/data/bucketlist.json').then(function(r){return r.json();}).then(function(list){
+  // 전체 페이지는 노출 순서(order)대로 (build.mjs가 이미 정렬해 둠)
+  var grid=document.getElementById('bl-grid');
+  if(!list.length){ document.getElementById('empty').style.display='block'; return; }
+  grid.innerHTML=list.map(function(b){
+    return '<a class="bl-card" href="'+esc(b.href)+'" target="_blank" rel="noopener">'
+      +'<img src="'+esc(b.img)+'" alt="'+esc(b.title||'버킷리스트 모임')+'" loading="lazy" style="border-radius:10px;aspect-ratio:1/1;object-fit:cover;" />'
+      +(b.title?'<div class="bl-title">'+esc(b.title)+'</div>':'')
+      +(b.time?'<div class="bl-info">🕒 '+esc(b.time)+'</div>':'')
+      +(b.fee?'<div class="bl-fee">참가비 '+esc(b.fee)+'</div>':'')
+      +'<div class="bl-go">예약하러 가기 →</div></a>';
+  }).join('');
+}).catch(function(){ document.getElementById('bl-grid').innerHTML='<p class="empty">목록을 불러오지 못했어요.</p>'; });
+</script>
+</body>
+</html>
