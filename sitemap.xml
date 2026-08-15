@@ -16,11 +16,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://bucketpeople.kr/profile?id=no078-20260815</loc>
-    <lastmod>2026-08-15</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://bucketpeople.kr/profile?id=no077-20260815</loc>
     <lastmod>2026-08-15</lastmod>
     <priority>0.6</priority>
@@ -37,6 +32,11 @@
   </url>
   <url>
     <loc>https://bucketpeople.kr/profile?id=no074-20260815</loc>
+    <lastmod>2026-08-15</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://bucketpeople.kr/profile?id=no073-20260815</loc>
     <lastmod>2026-08-15</lastmod>
     <priority>0.6</priority>
   </url>
