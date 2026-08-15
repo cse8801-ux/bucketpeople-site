@@ -1,4 +1,5 @@
-# 버킷피플 — 검색엔진 색인 차단 (아는 사람 위주 · 링크 공유형 운영)
-# 나중에 공개 검색 노출을 원하면 아래를 Allow: / 로 바꾸고 도메인을 연결하면 됩니다.
+# 버킷피플 — 검색 허용
 User-agent: *
-Disallow: /
+Allow: /
+
+Sitemap: https://bucketpeople-site.cse8801.workers.dev/sitemap.xml

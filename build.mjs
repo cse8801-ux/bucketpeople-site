@@ -5,7 +5,7 @@
 import { readFileSync, writeFileSync, readdirSync, existsSync, mkdirSync } from 'node:fs';
 import { join } from 'node:path';
 
-const SITE = 'https://bucketpeople.kr'; // 도메인 확정 후 이 값만 바꾸면 됨
+const SITE = 'https://bucketpeople-site.cse8801.workers.dev'; // 도메인 연결 시 이 값만 바꾸면 됨
 
 // ── 프론트매터 파서 (YAML 블록 스칼라 |- , 리스트 - , 따옴표 문자열 지원) ──
 function parseFrontmatter(raw) {
