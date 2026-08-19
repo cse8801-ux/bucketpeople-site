@@ -2,18 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://bucketpeople-site.cse8801.workers.dev/</loc>
-    <lastmod>2026-08-16</lastmod>
+    <lastmod>2026-08-19</lastmod>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://bucketpeople-site.cse8801.workers.dev/members</loc>
-    <lastmod>2026-08-16</lastmod>
+    <lastmod>2026-08-19</lastmod>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://bucketpeople-site.cse8801.workers.dev/bucketlist</loc>
-    <lastmod>2026-08-16</lastmod>
+    <lastmod>2026-08-19</lastmod>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://bucketpeople-site.cse8801.workers.dev/profile?id=no084-20260815</loc>
+    <lastmod>2026-08-15</lastmod>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://bucketpeople-site.cse8801.workers.dev/profile?id=no083-20260815</loc>
