@@ -208,5 +208,55 @@
     "time": "17:30~19:30",
     "fee": "20,000원",
     "href": "https://booking.naver.com/booking/5/bizes/373396/items/6514747/?preview=1&startDateTime=2025-02-10T00%3A00%3A00%2B09%3A00"
+  },
+  {
+    "slug": "bl22",
+    "order": 22,
+    "date": "2026-09-01",
+    "title": "루틴 만들기",
+    "img": "/img/bucketlist/bl22.jpg",
+    "time": "",
+    "fee": "없음",
+    "href": "https://buly.kr/Gkuy6kQ"
+  },
+  {
+    "slug": "bl23",
+    "order": 23,
+    "date": "2026-09-04",
+    "title": "영어 회화 스터디",
+    "img": "/img/bucketlist/bl23.jpg",
+    "time": "20:00~22:00",
+    "fee": "5,000원 (인당)",
+    "href": "https://buly.kr/8piry41"
+  },
+  {
+    "slug": "bl24",
+    "order": 24,
+    "date": "2026-09-05",
+    "title": "왕초보 경매 기초 스터디",
+    "img": "/img/bucketlist/bl24.jpg",
+    "time": "",
+    "fee": "15,000원",
+    "href": "https://buly.kr/2qb6cHs"
+  },
+  {
+    "slug": "bl25",
+    "order": 25,
+    "date": "2026-09-07",
+    "title": "월요일의 코워킹",
+    "img": "/img/bucketlist/bl25.jpg",
+    "time": "13:00~17:00",
+    "fee": "15,000원",
+    "href": "https://buly.kr/EzlOIdB"
+  },
+  {
+    "slug": "bl26",
+    "order": 26,
+    "date": "2026-09-15",
+    "title": "힙합/랩 원데이 클래스",
+    "img": "/img/bucketlist/bl26.jpg",
+    "time": "19:50~22:00",
+    "fee": "10,000원 (인당)",
+    "href": "https://buly.kr/uWlpKo"
   }
 ]

@@ -67,9 +67,12 @@
 <script>
 function esc(s){ return (s||'').replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
 fetch('/data/bucketlist.json').then(function(r){return r.json();}).then(function(all){
-  // 진행일자 가까운 순으로 정렬 (같은 날짜는 order로)
+  // 곧 열리는(미래) 순 먼저, 그다음 지난 것 최신순 (같은 날짜는 order로)
+  var today=new Date().toISOString().slice(0,10);
   var list=all.slice().sort(function(a,b){
-    return String(a.date||'').localeCompare(String(b.date||'')) || ((a.order||999)-(b.order||999));
+    var af=(a.date||'')>=today, bf=(b.date||'')>=today;
+    if(af!==bf) return af?-1:1;
+    return (af?String(a.date).localeCompare(b.date):String(b.date).localeCompare(a.date))||((a.order||999)-(b.order||999));
   });
   var grid=document.getElementById('bl-grid');
   if(!list.length){ document.getElementById('empty').style.display='block'; return; }

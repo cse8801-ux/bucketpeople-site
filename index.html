@@ -210,10 +210,13 @@ fetch('/profiles/index.json').then(function(r){return r.json();}).then(function(
   }).join('');
 }).catch(function(){});
 
-// 다가오는 버킷리스트 — 진행일자 가까운 순 6개 (새 모임 올리면 자동 갱신)
+// 다가오는 버킷리스트 — 곧 열리는(미래) 순 먼저, 그다음 지난 것 최신순. 앞 6개 (새 모임 올리면 자동 갱신)
 fetch('/data/bucketlist.json').then(function(r){return r.json();}).then(function(all){
+  var today=new Date().toISOString().slice(0,10);
   var list=all.slice().sort(function(a,b){
-    return String(a.date||'').localeCompare(String(b.date||'')) || ((a.order||999)-(b.order||999));
+    var af=(a.date||'')>=today, bf=(b.date||'')>=today;
+    if(af!==bf) return af?-1:1;
+    return (af?String(a.date).localeCompare(b.date):String(b.date).localeCompare(a.date))||((a.order||999)-(b.order||999));
   }).slice(0,6);
   document.getElementById('bl-grid').innerHTML=list.map(function(b){
     return '<a class="bl-card" href="'+esc(b.href)+'" target="_blank" rel="noopener">'
