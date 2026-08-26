@@ -1,15 +1,5 @@
 [
   {
-    "slug": "bl01",
-    "order": 1,
-    "date": "2026-07-19",
-    "title": "",
-    "img": "/img/bucketlist/bl01.jpg",
-    "time": "19:30~",
-    "fee": "개별결제!",
-    "href": "https://booking.naver.com/booking/5/bizes/373396/items/6789689/?preview=1&startDateTime=2025-06-27T00%3A00%3A00%2B09%3A00"
-  },
-  {
     "slug": "bl02",
     "order": 2,
     "date": "2026-07-19",
@@ -248,6 +238,16 @@
     "time": "13:00~17:00",
     "fee": "15,000원",
     "href": "https://buly.kr/EzlOIdB"
+  },
+  {
+    "slug": "bl01",
+    "order": 1,
+    "date": "2026-09-12",
+    "title": "버킷피플 티타임",
+    "img": "/img/bucketlist/bl01.jpg",
+    "time": "17:00~19:00",
+    "fee": "없음 (각자 커피값)",
+    "href": "https://buly.kr/APxguzU"
   },
   {
     "slug": "bl26",
