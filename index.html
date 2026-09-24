@@ -242,15 +242,61 @@ fetch('/data/bucketlist.json').then(function(r){return r.json();}).then(function
   padding:12px 18px;font-size:15px;font-weight:700;color:#fff;background:#D85A30;cursor:pointer;
   box-shadow:0 6px 20px rgba(216,90,48,.4);font-family:inherit;}
 .pwa-install:hover{background:#c24d28;}
+.pwa-sheet{position:fixed;inset:0;z-index:1000;display:none;align-items:flex-end;justify-content:center;
+  background:rgba(20,10,5,.5);}
+.pwa-sheet.open{display:flex;}
+.pwa-sheet-card{background:#fff;width:100%;max-width:440px;border-radius:18px 18px 0 0;padding:22px 22px 28px;
+  box-shadow:0 -8px 30px rgba(0,0,0,.25);font-family:inherit;color:#2b1a12;}
+.pwa-sheet-card h3{margin:0 0 4px;font-size:18px;}
+.pwa-sheet-card p{margin:0 0 14px;font-size:14px;color:#6b5347;}
+.pwa-steps{margin:0;padding:0;list-style:none;display:grid;gap:10px;}
+.pwa-steps li{display:flex;gap:10px;align-items:flex-start;font-size:15px;line-height:1.5;}
+.pwa-steps b{flex:none;width:24px;height:24px;border-radius:50%;background:#D85A30;color:#fff;
+  font-size:13px;display:flex;align-items:center;justify-content:center;}
+.pwa-sheet-close{margin-top:18px;width:100%;border:none;border-radius:12px;padding:13px;font-size:15px;
+  font-weight:700;background:#f1e4dc;color:#8a4a2a;cursor:pointer;font-family:inherit;}
 </style>
-<button class="pwa-install" id="pwaInstall" type="button" hidden>📲 앱으로 설치</button>
+<button class="pwa-install" id="pwaInstall" type="button" hidden>📲 앱 설치하기</button>
+<div class="pwa-sheet" id="pwaSheet" role="dialog" aria-modal="true">
+  <div class="pwa-sheet-card">
+    <h3>홈 화면에 버킷피플 추가</h3>
+    <p id="pwaSheetLead">아래 순서대로 설치하면 앱처럼 바로 열 수 있어요.</p>
+    <ol class="pwa-steps" id="pwaSteps"></ol>
+    <button class="pwa-sheet-close" id="pwaSheetClose" type="button">닫기</button>
+  </div>
+</div>
 <script>
-if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('/sw.js').catch(function(){});});}
-var deferredPrompt=null;
-var pwaBtn=document.getElementById('pwaInstall');
-window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();deferredPrompt=e;if(pwaBtn)pwaBtn.hidden=false;});
-if(pwaBtn){pwaBtn.addEventListener('click',function(){if(!deferredPrompt)return;deferredPrompt.prompt();deferredPrompt.userChoice.finally(function(){deferredPrompt=null;pwaBtn.hidden=true;});});}
-window.addEventListener('appinstalled',function(){if(pwaBtn)pwaBtn.hidden=true;});
+(function(){
+  if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('/sw.js').catch(function(){});});}
+  var btn=document.getElementById('pwaInstall');
+  var sheet=document.getElementById('pwaSheet');
+  var steps=document.getElementById('pwaSteps');
+  var lead=document.getElementById('pwaSheetLead');
+  var ua=navigator.userAgent||'';
+  var isIOS=/iphone|ipad|ipod/i.test(ua)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+  var isStandalone=window.matchMedia('(display-mode: standalone)').matches||navigator.standalone===true;
+  var isMobile=window.matchMedia('(max-width: 859px)').matches;
+  var deferredPrompt=null;
+
+  var iosSteps=['사파리(Safari)에서 이 페이지를 열어요','하단 가운데 <b style="all:unset">공유 버튼 ⬆️</b> 을 눌러요','메뉴에서 <b style="all:unset">‘홈 화면에 추가’</b> 를 눌러요','오른쪽 위 <b style="all:unset">‘추가’</b> 를 누르면 끝!'];
+  var androidSteps=['Chrome 오른쪽 위 <b style="all:unset">메뉴 ⋮</b> 를 눌러요','<b style="all:unset">‘앱 설치’</b> 또는 <b style="all:unset">‘홈 화면에 추가’</b> 를 눌러요','<b style="all:unset">‘설치’</b> 를 누르면 끝!'];
+  function renderSteps(list){steps.innerHTML=list.map(function(t,i){return '<li><b>'+(i+1)+'</b><span>'+t+'</span></li>';}).join('');}
+  function openSheet(){lead.textContent=isIOS?'아이폰은 사파리에서 아래 순서로 추가해요.':'브라우저 메뉴에서 아래 순서로 추가해요.';renderSteps(isIOS?iosSteps:androidSteps);sheet.classList.add('open');}
+  function closeSheet(){sheet.classList.remove('open');}
+  document.getElementById('pwaSheetClose').addEventListener('click',closeSheet);
+  sheet.addEventListener('click',function(e){if(e.target===sheet)closeSheet();});
+
+  window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();deferredPrompt=e;if(btn)btn.hidden=false;});
+  window.addEventListener('appinstalled',function(){deferredPrompt=null;if(btn)btn.hidden=true;});
+
+  // 모바일이면(설치 전) 항상 버튼 노출 — 안드로이드는 바로 설치, 아이폰은 안내
+  if(btn && !isStandalone && isMobile){btn.hidden=false;}
+
+  if(btn){btn.addEventListener('click',function(){
+    if(deferredPrompt){deferredPrompt.prompt();deferredPrompt.userChoice.finally(function(){deferredPrompt=null;btn.hidden=true;});}
+    else{openSheet();}
+  });}
+})();
 </script>
 </body>
 </html>
