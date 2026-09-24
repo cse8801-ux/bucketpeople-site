@@ -1,0 +1,17 @@
+{
+  "name": "버킷피플 (Bucketpeople)",
+  "short_name": "버킷피플",
+  "description": "좋은 사람들과 버킷리스트를 함께 이뤄가는 커뮤니티, 버킷피플.",
+  "lang": "ko",
+  "start_url": "/?source=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#000000",
+  "theme_color": "#D85A30",
+  "icons": [
+    { "src": "/img/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/img/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/img/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
