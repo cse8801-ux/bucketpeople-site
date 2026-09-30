@@ -201,8 +201,8 @@
   },
   {
     "slug": "bl22",
-    "order": 22,
-    "date": "2026-09-01",
+    "order": 1,
+    "date": "2026-10-01",
     "title": "루틴 만들기",
     "img": "/img/bucketlist/bl22.jpg",
     "time": "",
@@ -211,52 +211,62 @@
   },
   {
     "slug": "bl23",
-    "order": 23,
-    "date": "2026-09-04",
-    "title": "영어 회화 스터디",
+    "order": 2,
+    "date": "2026-10-03",
+    "title": "자피치 정상회담",
     "img": "/img/bucketlist/bl23.jpg",
-    "time": "20:00~22:00",
-    "fee": "5,000원 (인당)",
-    "href": "https://buly.kr/8piry41"
+    "time": "오전 9:30~",
+    "fee": "식비 N분의1",
+    "href": "https://buly.kr/8eoJwDV"
   },
   {
     "slug": "bl24",
-    "order": 24,
-    "date": "2026-09-05",
-    "title": "왕초보 경매 기초 스터디",
+    "order": 3,
+    "date": "2026-10-09",
+    "title": "댄스동아리",
     "img": "/img/bucketlist/bl24.jpg",
-    "time": "15:00~17:00",
-    "fee": "15,000원",
-    "href": "https://buly.kr/2qb6cHs"
+    "time": "14:00~16:00",
+    "fee": "8,000원 (인당)",
+    "href": "https://buly.kr/4Qq8Odr"
   },
   {
     "slug": "bl25",
-    "order": 25,
-    "date": "2026-09-07",
-    "title": "월요일의 코워킹",
+    "order": 4,
+    "date": "2026-10-13",
+    "title": "힙합 원데이클래스 Lv2 (초보반)",
     "img": "/img/bucketlist/bl25.jpg",
-    "time": "13:00~17:00",
-    "fee": "15,000원",
-    "href": "https://buly.kr/EzlOIdB"
+    "time": "19:50~",
+    "fee": "10,000원",
+    "href": "https://buly.kr/EI6ZKLN"
+  },
+  {
+    "slug": "bl26",
+    "order": 5,
+    "date": "2026-10-20",
+    "title": "힙합 원데이클래스 Lv1 (입문반)",
+    "img": "/img/bucketlist/bl26.jpg",
+    "time": "19:50~",
+    "fee": "10,000원",
+    "href": "https://buly.kr/28wHe3f"
   },
   {
     "slug": "bl01",
-    "order": 1,
-    "date": "2026-09-12",
+    "order": 6,
+    "date": "2026-10-25",
     "title": "버킷피플 티타임",
     "img": "/img/bucketlist/bl01.jpg",
-    "time": "17:00~19:00",
+    "time": "18:00~",
     "fee": "없음 (각자 커피값)",
     "href": "https://buly.kr/APxguzU"
   },
   {
-    "slug": "bl26",
-    "order": 26,
-    "date": "2026-09-15",
-    "title": "힙합/랩 원데이 클래스",
-    "img": "/img/bucketlist/bl26.jpg",
-    "time": "19:50~22:00",
-    "fee": "10,000원 (인당)",
-    "href": "https://buly.kr/3NLNYuz"
+    "slug": "bl27",
+    "order": 7,
+    "date": "2026-10-30",
+    "title": "힙합 라운지 투어",
+    "img": "/img/bucketlist/bl27.jpg",
+    "time": "22:00~",
+    "fee": "개인 술값",
+    "href": "https://buly.kr/5qACFQw"
   }
 ]
